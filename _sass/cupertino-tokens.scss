@@ -1,9 +1,12 @@
 /* ======================================================================
-   Cupertino Theme — Font only
-   Source: Obsidian Cupertino theme (SF Pro stack)
+   Cupertino Theme — Font + Sidebar
+   Source: Obsidian Cupertino theme (SF Pro stack + Apple Finder/Mail sidebar)
    Adopted: 2026-05-25
    ====================================================================== */
 
+/* ----------------------------------------------------------------------
+   Font Stack (Apple SF Pro)
+   ---------------------------------------------------------------------- */
 body {
   font-family:
     -apple-system, BlinkMacSystemFont,
@@ -30,3 +33,199 @@ code, pre, kbd, samp, tt {
     Menlo, Consolas, "Liberation Mono",
     monospace;
 }
+
+/* ----------------------------------------------------------------------
+   Sidebar — Apple Finder / Mail style
+   ---------------------------------------------------------------------- */
+
+/* Sidebar background / border-right — Chirpy 기본색 사용 (--sidebar-bg) */
+
+/* Profile area — 균등 padding + 중앙 정렬 + hairline divider */
+#sidebar .profile-wrapper {
+  padding: 2.25rem 1rem 1.5rem !important;
+  text-align: center !important;
+  width: 100%;
+  border-bottom: 0.5px solid var(--sidebar-border-color);
+  margin-bottom: 0.5rem;
+}
+
+#avatar {
+  margin: 0 auto;
+}
+
+#avatar img {
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px var(--avatar-border-color),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Site title — Chirpy의 width: fit-content + 좌측 정렬 강제 override */
+.site-title,
+.site-title a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.25rem !important;
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    "SF Pro Display", "SF Pro Text",
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.022em !important;
+  line-height: 1.25 !important;
+  /* color는 Chirpy 변수 사용 — var(--site-title-color) */
+}
+
+/* Site subtitle — italic 제거 + Chirpy 기본색 활용 */
+.site-subtitle {
+  width: 100%;
+  text-align: center !important;
+  font-style: normal !important;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+  margin-top: 0 !important;
+  padding: 0 0.5rem;
+  opacity: 0.7;
+  /* color는 Chirpy 기본 따름 */
+}
+
+/* Nav — 좌우 균등 inset + 항목 간 gap */
+#sidebar nav,
+#sidebar .nav {
+  padding: 0.5rem 0.75rem !important;
+  width: 100%;
+}
+
+#sidebar .nav-item {
+  padding: 0 !important;
+  margin-bottom: 2px;
+}
+
+#sidebar .nav-link {
+  border-radius: 10px;
+  padding: 9px 14px !important;
+  transition:
+    background-color 160ms cubic-bezier(0.32, 0.72, 0, 1),
+    color 160ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* hover / active state — Chirpy 변수에 위임. nav-link 자체 weight만 살짝 */
+
+#sidebar .nav-item.active .nav-link {
+  font-weight: 600;
+}
+
+/* Sidebar bottom — 하단 hairline + 균등 padding + 아이콘 사이 separator dot */
+.sidebar-bottom {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0 !important;
+  padding: 0.75rem 0.75rem 1.25rem !important;
+  width: 100%;
+  border-top: 0.5px solid var(--sidebar-border-color);
+  margin-top: auto;
+}
+
+/* 모든 visible 자식 동일 크기 + margin 0 강제 (Chirpy 기본 margin-bottom 충돌 제거) */
+.sidebar-bottom .btn,
+.sidebar-bottom a,
+.sidebar-bottom #mode-toggle {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition:
+    background-color 160ms cubic-bezier(0.32, 0.72, 0, 1),
+    color 160ms cubic-bezier(0.32, 0.72, 0, 1),
+    transform 160ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* 기존 Chirpy `.icon-border` 점은 숨김 — 우리가 일관된 점으로 대체 */
+.sidebar-bottom .icon-border {
+  display: none !important;
+}
+
+/* 인접 아이콘 사이 균등한 dot separator + 일관된 간격
+   icon-border 제외 + first-child 제외 → mode-toggle 다음의 모든 visible 자식 좌측에 점 */
+.sidebar-bottom > *:not(.icon-border):not(:first-child) {
+  position: relative;
+  margin-left: 0.85rem !important;
+}
+
+.sidebar-bottom > *:not(.icon-border):not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--sidebar-btn-color);
+}
+
+/* hover 배경은 Chirpy 변수 따름. 우리는 scale 인터랙션만 */
+
+.sidebar-bottom .btn:hover,
+.sidebar-bottom a:hover,
+.sidebar-bottom #mode-toggle:hover {
+  transform: scale(1.05);
+}
+
+.sidebar-bottom .btn:active,
+.sidebar-bottom a:active,
+.sidebar-bottom #mode-toggle:active {
+  transform: scale(0.95);
+}
+
+/* ----------------------------------------------------------------------
+   Mode toggle button — Apple-style hover
+   ---------------------------------------------------------------------- */
+
+#mode-toggle {
+  border-radius: 10px;
+  padding: 6px 10px;
+  transition:
+    background-color 160ms cubic-bezier(0.32, 0.72, 0, 1),
+    color 160ms cubic-bezier(0.32, 0.72, 0, 1),
+    transform 160ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+#mode-toggle:hover {
+  transform: scale(1.05);
+}
+
+#mode-toggle:active {
+  transform: scale(0.95);
+}
+
+/* ----------------------------------------------------------------------
+   Dark mode — Explicit toggle (data-mode="dark")
+   ---------------------------------------------------------------------- */
+
+/* Dark — 배경/border/text 색은 Chirpy 변수에 위임. 우리는 active state + hover만 명시. */
+
+html[data-mode="dark"] #avatar img {
+  box-shadow:
+    0 0 0 2px var(--avatar-border-color),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark 모드 active/hover도 Chirpy 변수에 위임 — 모든 색 override 제거 */
+
+/* prefers-color-scheme 자동 감지는 Chirpy 토글과 충돌 가능 → 제거.
+   사용자 토글(data-mode)만 신뢰. Chirpy가 초기 로드 시 시스템 모드를
+   기반으로 data-mode를 부착해주므로 위 룰만으로 모든 케이스 처리됨. */
