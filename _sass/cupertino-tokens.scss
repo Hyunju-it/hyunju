@@ -1,0 +1,32 @@
+/* ======================================================================
+   Cupertino Theme — Font only
+   Source: Obsidian Cupertino theme (SF Pro stack)
+   Adopted: 2026-05-25
+   ====================================================================== */
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", "SF Pro Display",
+    "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR",
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    "SF Pro Display", "SF Pro Text",
+    "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR",
+    Arial, sans-serif;
+}
+
+code, pre, kbd, samp, tt {
+  font-family:
+    ui-monospace, "SF Mono",
+    Menlo, Consolas, "Liberation Mono",
+    monospace;
+}
