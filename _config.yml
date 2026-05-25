@@ -16,7 +16,7 @@ timezone: Asia/Seoul
 
 title: 이현주 # the main title
 
-tagline: 성장하는 개발자의 기록 # it will display as the subtitle
+tagline: 성장하는 개발자의 테크 블로그 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   이현주의 기술 블로그 - 개발 이야기와 기술 노트
